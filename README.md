@@ -61,7 +61,7 @@ with string rawValues (it simply returns the raw value lowercased ans it's a bit
 If you want to see an example for this implementation, you can check out Dog.swift & Person.swift in the Demo playground.
 ## FilterPerformable & Filter<T>
 
-There's a saying in Hebrew that you need two people for tango, and the same applies for **Filterable** and **FilterPerformable**! Filterable gets filtered, and FilterPerformable performs the filtration.
+There's a saying "It takes two to Tango", and the same applies for **Filterable** and **FilterPerformable**! Filterable gets filtered, and FilterPerformable performs the filtration.
 
 FilterPerformable is the protocol that contains the requirements for an object to be able to filter a **Filterable** object. DSFilters also contains an implementation for this protocol called **Filter<T>**, so you'll rarely need to re-implement this.
 
