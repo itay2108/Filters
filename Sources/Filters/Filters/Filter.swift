@@ -104,3 +104,10 @@ extension Filter: CustomStringConvertible {
         return "Filter (\(rawKey)): <Possible values: \(values), Active values: \(activeValues)>\n"
     }
 }
+
+extension Filter: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(rawKey)
+        hasher.combine(values.map({ $0.description }))
+    }
+}
