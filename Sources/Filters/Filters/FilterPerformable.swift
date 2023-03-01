@@ -90,7 +90,7 @@ public extension Array where Element: FilterPerformable {
     }
 }
 
-extension Array where Element: FilterPerformable {
+public extension Array where Element: FilterPerformable {
     
     mutating func deactivateAll() {
         var deactivatedFilters: [Element] = []
