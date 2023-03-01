@@ -89,3 +89,30 @@ public extension Array where Element: FilterPerformable {
         return rawFilters
     }
 }
+
+extension Array where Element: FilterPerformable {
+    
+    mutating func deactivateAll() {
+        var deactivatedFilters: [Element] = []
+        
+        self.forEach { filter in
+            var deactivatedFilter = filter
+            deactivatedFilter.activeValues = []
+            deactivatedFilters.append(deactivatedFilter)
+        }
+        
+        self = deactivatedFilters
+    }
+    
+    mutating func activateAll() {
+        var activatedFilters: [Element] = []
+        
+        self.forEach { filter in
+            var activatedFilter = filter
+            activatedFilter.activeValues = filter.values
+            activatedFilters.append(activatedFilter)
+        }
+        
+        self = activatedFilters
+    }
+}
