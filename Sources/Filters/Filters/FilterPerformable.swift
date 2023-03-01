@@ -47,7 +47,7 @@ public extension FilterPerformable {
             return "All"
         }
         
-        let stringValues = activeValues.map({ $0.description.capitalized })
+        let stringValues = activeValues.map({ $0.description })
         return stringValues.joined(separator: ", ")
     }
 }
