@@ -4,7 +4,7 @@ import Foundation
 public protocol Filterable: FilterKeyPathRepresentable {
 
     static func keyDisplayName<T: FilterPerformable>(for filter: T) -> String
-    static func valueDisplayName(for filterValue: String, value filterValue: AnyEquatable) -> String
+    static func valueDisplayName<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> String
 }
 
 public extension Filterable {
