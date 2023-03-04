@@ -5,6 +5,7 @@ public protocol Filterable: FilterKeyPathRepresentable {
 
     static func keyDisplayName<T: FilterPerformable>(for filter: T) -> String
     static func valueDisplayName<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> String
+    static func displayPriotity<T: FilterPerformable>(for filter: T) -> FilterDisplayPriority
 }
 
 public extension Filterable {
@@ -15,6 +16,10 @@ public extension Filterable {
     
     static func valueDisplayName<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> String {
         return filterValue.description
+    }
+    
+    static func displayPriotity<T: FilterPerformable>(for filter: T) -> FilterDisplayPriority {
+        return .normal
     }
     
 }
