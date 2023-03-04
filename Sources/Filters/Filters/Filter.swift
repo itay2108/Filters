@@ -39,13 +39,14 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     
     /// A string representing the display names of active values separated by commas. Returns All if active values contains all possible values, or if it is empty.
     public var activeValuesDisplayArguments: String {
+        let stringValues = activeValues.map({ self.valueDisplayName(for: $0) })
+        
         guard !activeValues.isEmpty,
-              !values.allSatisfy({ activeValues.contains($0) }),
-              values.count > 1 else {
-            return "All"
+              !values.allSatisfy({ activeValues.contains($0) }) else {
+            
+            return values.count > 1 ? "All" : stringValues.joined(separator: ", ")
         }
         
-        let stringValues = activeValues.map({ self.valueDisplayName(for: $0) })
         return stringValues.joined(separator: ", ")
     }
     
