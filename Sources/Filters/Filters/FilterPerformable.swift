@@ -40,7 +40,7 @@ public extension FilterPerformable {
         return [String(describing: rawKey): activeValues.map(\.value)]
     }
     
-    /// A string representing active values separated by commas. Returns All if active values contains all possible values, or if it is empty.
+    /// A string representing active values separated by commas. Returns All if active values contains all possible values, a single selected value if there's only one possible value, or an empty string if no active values at all
     var activeValuesStringArguments: String {
         let stringValues = activeValues.map({ $0.description })
         
