@@ -37,6 +37,17 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
         return T.keyDisplayName(for: self)
     }
     
+    /// A string representing the display names of active values separated by commas. Returns All if active values contains all possible values, or if it is empty.
+    public var activeValuesDisplayArguments: String {
+        guard !activeValues.isEmpty,
+              !values.allSatisfy({ activeValues.contains($0) }) else {
+            return "All"
+        }
+        
+        let stringValues = activeValues.map({ self.valueDisplayName(for: $0) })
+        return stringValues.joined(separator: ", ")
+    }
+    
     /// Returns the display (UI) name for a provided value - defined in the associated Filterable object
     /// - Parameter value: the value for which to return the formatted name
     /// - Returns: a String representing the formatted UI display value
