@@ -4,7 +4,7 @@ import Foundation
 /// but also implements additional methods that make manipulating FilterPerformables & Filterables easier in UI (and programmatic) environments.
 ///
 /// This structure is generic, and acquires it's Filterable target when the comparisonTarget is passed in its initializer
-public struct Filter<T: FilterKeyPathRepresentable>: FilterPerformable, Identifiable {
+public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     
     public var id: String {
         return rawKey

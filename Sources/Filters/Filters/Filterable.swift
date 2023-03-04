@@ -1,7 +1,23 @@
 import Foundation
 
 /// Represents a type that can be filtered by a FilterPerformable. Must conform to FilterKeyPAthRepresentable.
-public protocol Filterable: FilterKeyPathRepresentable { }
+public protocol Filterable: FilterKeyPathRepresentable {
+
+    func keyDisplayName<T: FilterPerformable>(for filter: T) -> String
+    func valueDisplayName(for filterValue: String) -> String
+}
+
+public extension Filterable {
+    
+    func keyDisplayName<T: FilterPerformable>(for filter: T) -> String {
+        return filter.rawKey.description
+    }
+    
+    func valueDisplayName<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> String {
+        return filterValue.description
+    }
+    
+}
 
 extension Array where Element: Filterable {
     
