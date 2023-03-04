@@ -43,7 +43,8 @@ public extension FilterPerformable {
     /// A string representing active values separated by commas. Returns All if active values contains all possible values, or if it is empty.
     var activeValuesStringArguments: String {
         guard !activeValues.isEmpty,
-              !values.allSatisfy({ activeValues.contains($0) }) else {
+              !values.allSatisfy({ activeValues.contains($0) }),
+              values.count > 1 else {
             return "All"
         }
         
