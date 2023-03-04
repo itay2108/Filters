@@ -7,7 +7,11 @@
 
 import Foundation
 
-public enum FilterDisplayPriority: Int {
+public enum FilterDisplayPriority: Int, Comparable {
+    public static func < (lhs: FilterDisplayPriority, rhs: FilterDisplayPriority) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+    
     case lowest = 0
     case low = 250
     case normal = 500

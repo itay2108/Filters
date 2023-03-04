@@ -37,6 +37,10 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
         return T.keyDisplayName(for: self)
     }
     
+    public var displayPriotity: FilterDisplayPriority {
+        return T.displayPriotity(for: self)
+    }
+    
     /// A string representing the display names of active values separated by commas. Returns All if active values contains all possible values, a single selected value if there's only one possible value, or an empty string if no active values at all
     public var activeValuesDisplayArguments: String {
         let stringValues = activeValues.map({ self.valueDisplayName(for: $0) })
