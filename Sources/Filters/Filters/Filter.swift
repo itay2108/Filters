@@ -31,6 +31,18 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     public var allValuesAreInactive: Bool {
         return activeValues.isEmpty
     }
+    
+    /// Returns the display (UI) name for the Filter rawKey - defined in the associated Filterable object
+    public var keyDiesplayName: String {
+        return T.keyDisplayName(for: self)
+    }
+    
+    /// Returns the display (UI) name for a provided value - defined in the associated Filterable object
+    /// - Parameter value: the value for which to return the formatted name
+    /// - Returns: a String representing the formatted UI display value
+    public func valueDisplayName(for value: AnyEquatable) -> String {
+        return T.valueDisplayName(for: self, value: value)
+    }
 
     //MARK: - Inits
     
