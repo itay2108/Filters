@@ -20,7 +20,13 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     public var values: [AnyEquatable]
     
     /// Active values that will be compared against the specified KeyPath of the target object
-    public var activeValues: [AnyEquatable] = []
+    public var activeValues: [AnyEquatable] = [] {
+        didSet {
+            if activeValues == values {
+                activeValues = []
+            }
+        }
+    }
     
     /// Returns a boolean value that describes if all values are set to active
     public var allValuesAreActive: Bool {
