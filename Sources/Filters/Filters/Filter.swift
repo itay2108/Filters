@@ -22,7 +22,6 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     /// Active values that will be compared against the specified KeyPath of the target object
     public var activeValues: [AnyEquatable] = [] {
         didSet {
-            print("active values set for \(rawKey): \(activeValues.map({ $0.description }))")
             if allValuesAreActive {
                 activeValues = []
             }
