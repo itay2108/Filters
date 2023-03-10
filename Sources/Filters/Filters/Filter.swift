@@ -52,7 +52,7 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
         let stringValues = activeValues.map({ self.valueDisplayName(for: $0) })
         
         guard !allValuesAreActive else {
-            return values.count != 1 ? "All" : stringValues.joined(separator: ", ")
+            return values.count != 1 ? "All" : values.map({ self.valueDisplayName(for: $0) }).joined(separator: ", ")
         }
         
         return stringValues.joined(separator: ", ")
