@@ -30,7 +30,7 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     
     /// Returns a boolean value that describes if all values are set to active
     public var allValuesAreActive: Bool {
-        return values.allSatisfy({ activeValues.contains($0) })
+        return values.allSatisfy({ activeValues.contains($0) }) || allValuesAreInactive
     }
     
     /// Returns a boolean value that describes if none of the values are set to active
@@ -51,10 +51,8 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     public var activeValuesDisplayArguments: String {
         let stringValues = activeValues.map({ self.valueDisplayName(for: $0) })
         
-        guard !activeValues.isEmpty,
-              !values.allSatisfy({ activeValues.contains($0) }) else {
-            
-            return values.count > 1 ? "All" : stringValues.joined(separator: ", ")
+        guard !allValuesAreActive else {
+            return values.count != 1 ? "All" : stringValues.joined(separator: ", ")
         }
         
         return stringValues.joined(separator: ", ")
