@@ -94,6 +94,32 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
         }
     }
     
+    /// Activates a specified filter value. Returns if value is alredy active
+    /// - Warning: Throws if passed value is not in possible values
+    /// - Parameter filterValue: the value to activate
+    public mutating func activate(value filterValue: AnyEquatable) throws {
+        guard values.contains(filterValue) else {
+            throw FilterError.undefinedValue
+        }
+        
+        if !self.activeValues.contains(filterValue) {
+            activeValues.append(filterValue)
+        }
+    }
+    
+    /// Deactivates a specified filter value. Returns if value is alredy inactive
+    /// - Warning: Throws if passed value is not in possible values
+    /// - Parameter filterValue: the value to deactivate
+    public mutating func deactivate(value filterValue: AnyEquatable) throws {
+        guard values.contains(filterValue) else {
+            throw FilterError.undefinedValue
+        }
+        
+        if self.activeValues.contains(filterValue) {
+            activeValues.removeAll(where: { $0 == filterValue })
+        }
+    }
+    
     /// Activates all available values for the object
     public mutating func activateAllValues() {
         activeValues = values
