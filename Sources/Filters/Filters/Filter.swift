@@ -23,13 +23,14 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     public var activeValues: [AnyEquatable] = [] {
         didSet {
             print("active values set for \(rawKey): \(activeValues.map({ $0.description }))")
-            if activeValues == values {
+            if allValuesAreActive {
                 activeValues = []
             }
         }
     }
     
-    /// Returns a boolean value that describes if all values are set to active
+    /// Returns a boolean value that describes if all values are set to active.
+    /// - Warning: Returns true if active values is empty as well!
     public var allValuesAreActive: Bool {
         return values.allSatisfy({ activeValues.contains($0) }) || allValuesAreInactive
     }
