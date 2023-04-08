@@ -12,6 +12,8 @@ public extension FilterKey {
          return String(describing: self.rawValue).lowercased()
     }
     
+    /// Attempts to init the FilterKey by it's rawKey value
+    /// - Parameter rawKey: a value that should match te rawKey property of the FilterKey
     init?(rawKey: any StringProtocol) {
         if let caseByKey = Self.allCases.first(where: { $0.rawKey == rawKey }) {
             self = caseByKey
@@ -21,6 +23,19 @@ public extension FilterKey {
     }
 }
 
+public extension FilterKey where RawValue == String {
+    
+    
+    /// Attempts to init the FilterKey in a non case-sensitive way
+    /// - Parameter caseForgivingRawKey: the key to init the enmu from
+    init?(caseForgivingRawKey: String) {
+        if let caseByKey = Self.allCases.first(where: { $0.rawKey.lowercased() == caseForgivingRawKey.lowercased() }) ?? .init(rawValue: caseForgivingRawKey) ?? .init(rawValue: caseForgivingRawKey.lowercased()) {
+            self = caseByKey
+        } else {
+            return nil
+        }
+    }
+}
 /// Represents an Object that is able to point at keyPath for passed FilterPerformable raw keys.
 public protocol FilterKeyPathRepresentable {
     
