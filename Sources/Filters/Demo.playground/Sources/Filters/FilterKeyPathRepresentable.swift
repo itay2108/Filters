@@ -36,6 +36,7 @@ public extension FilterKey where RawValue == String {
         }
     }
 }
+
 /// Represents an Object that is able to point at keyPath for passed FilterPerformable raw keys.
 public protocol FilterKeyPathRepresentable {
     
