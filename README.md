@@ -1,4 +1,4 @@
-# DSFilters
+# Filters
 *Created by Itay Gervash*
 
 ## TL;DR
