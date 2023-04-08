@@ -12,7 +12,7 @@ public extension FilterKey {
          return String(describing: self.rawValue).lowercased()
     }
     
-    init?(rawKey: String) {
+    init?(rawKey: any StringProtocol) {
         if let caseByKey = Self.allCases.first(where: { $0.rawKey == rawKey }) {
             self = caseByKey
         } else {
