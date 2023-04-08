@@ -11,6 +11,14 @@ public extension FilterKey {
      var rawKey: String {
          return String(describing: self.rawValue).lowercased()
     }
+    
+    init?(rawKey: String) {
+        if let caseByKey = Self.allCases.first(where: { $0.rawKey == rawKey }) {
+            self = caseByKey
+        } else {
+            return nil
+        }
+    }
 }
 
 /// Represents an Object that is able to point at keyPath for passed FilterPerformable raw keys.
