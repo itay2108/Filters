@@ -171,3 +171,9 @@ extension Filter: Hashable {
         hasher.combine(values.map({ $0.description }))
     }
 }
+
+extension Filter: Equatable {
+    public static func ==(lhs: Filter, rhs: Filter) -> Bool {
+        return lhs.rawKey == rhs.rawKey && lhs.activeValues == rhs.activeValues
+    }
+}
