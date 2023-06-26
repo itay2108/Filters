@@ -31,6 +31,11 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
         }
     }
     
+    /// Inactive values that will not be compared against the specified KeyPath of the target object
+    public var inactiveValues: [AnyEquatable] {
+        return values.filter({ !activeValues.contains($0) })
+    }
+    
     /// Returns a boolean value that describes if all values are set to active.
     /// - Warning: Returns true if active values is empty as well!
     public var allValuesAreActive: Bool {
