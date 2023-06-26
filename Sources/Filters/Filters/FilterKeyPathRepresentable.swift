@@ -41,4 +41,12 @@ public protocol FilterKeyPathRepresentable {
     /// - Parameter key: a string representing a FilterPerformable raw key
     /// - Returns: an optional keypath pointing to a parameter in self
     static func keypath(for key: String) -> KeyPath<Self, AnyEquatable>?
+    
+    static func dismissActiveValuesWhenAllAreSelected(for key: String) -> Bool
+}
+
+public extension FilterKeyPathRepresentable {
+    static func dismissActiveValuesWhenAllAreSelected(for key: String) -> Bool {
+        return true
+    }
 }
