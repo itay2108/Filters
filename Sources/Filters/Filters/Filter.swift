@@ -19,10 +19,13 @@ public struct Filter<T: Filterable>: FilterPerformable, Identifiable {
     /// All Possible values for the filter
     public var values: [AnyEquatable]
     
+    /// Controls whether active values gets reset when all possible values are activated
+    public var dismissValuesWhenAllAreSelected: Bool = true
+    
     /// Active values that will be compared against the specified KeyPath of the target object
     public var activeValues: [AnyEquatable] = [] {
         didSet {
-            if allValuesAreActive {
+            if allValuesAreActive, dismissValuesWhenAllAreSelected {
                 activeValues = []
             }
         }
