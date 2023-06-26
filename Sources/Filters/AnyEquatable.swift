@@ -95,7 +95,9 @@ public extension Dictionary where Key == String, Value == [Any] {
     func asFilters<T: Filterable>(for type: T.Type) -> [Filter<T>] {
         return self.asAnyEquatableValues().compactMap { filter in
             if let targetKeyPath = T.keypath(for: filter.key) {
-                return Filter(rawKey: filter.key, comparisonTarget: targetKeyPath, values: filter.value)
+                var filter = Filter(rawKey: filterData.key, comparisonTarget: targetKeyPath, values: filterData.value)
+                filter.dismissValuesWhenAllAreSelected = T.dismissActiveValuesWhenAllAreSelected(for: filterData.key)
+                return filter
             } else {
                 return nil
             }
