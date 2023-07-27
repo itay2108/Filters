@@ -1,5 +1,5 @@
 import Foundation
-import SwiftUI
+import CoreGraphics
 
 /// Represents a type that can be filtered by a FilterPerformable. Must conform to FilterKeyPAthRepresentable.
 public protocol Filterable: FilterKeyPathRepresentable {
@@ -8,7 +8,7 @@ public protocol Filterable: FilterKeyPathRepresentable {
     static func valueDisplayName<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> String
     static func displayPriotity<T: FilterPerformable>(for filter: T) -> FilterDisplayPriority
     static func displayImageName<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> String?
-    static func displayColor<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> Color?
+    static func displayColor<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> CGColor?
 }
 
 public extension Filterable {
@@ -29,7 +29,7 @@ public extension Filterable {
         return nil
     }
     
-    static func displayColor<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> Color? {
+    static func displayColor<T: FilterPerformable>(for filter: T, value filterValue: AnyEquatable) -> CGColor? {
         return nil
     }
 }
